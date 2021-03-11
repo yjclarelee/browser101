@@ -4,8 +4,8 @@
 }
 
 body{
-    display: flex;
-    justify-content: space-between;
+    /* display: flex;
+    justify-content: space-between; */
 }
 
 .rect{
@@ -17,4 +17,10 @@ body{
 
 .rect:nth-child(8){
     background-color: cornsilk;
+}
+
+.buttons{
+    position: fixed;
+    left: 550px;
+    top: 0px;
 }
