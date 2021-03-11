@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+body{
+    background-color: black;
+}
+
+.line{
+    position: absolute;
+    background-color: white;
+}
+
+.horizontal{
+    width: 100%;
+    top: 50%;
+    height: 2px;
+}
+
+.vertical{
+    width: 2px;
+    left: 50%;
+    height: 100%;
+}
+
+img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+span{
+    position: absolute;
+    color: white;
+    font-size: 1.5rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(30px, 20px);
+}
+
+
+
