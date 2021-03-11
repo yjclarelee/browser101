@@ -15,31 +15,27 @@ body{
 }
 
 .horizontal{
+    position: absolute;
     width: 100%;
-    top: 50%;
-    height: 2px;
+    height: 1px;
 }
 
 .vertical{
-    width: 2px;
-    left: 50%;
+    position: absolute;
+    width: 1px;
     height: 100%;
 }
 
 img{
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    /* transform: translate(-50%, -50%); */
 }
 
 span{
     position: absolute;
     color: white;
     font-size: 1.5rem;
-    top: 50%;
-    left: 50%;
-    transform: translate(30px, 20px);
+    /* transform: translate(30px, 30px); */
 }
 
 
