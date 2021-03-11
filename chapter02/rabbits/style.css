@@ -4,29 +4,24 @@
 }
 
 body{
-    display: flex;
-    flex-direction: column;
     background-color: black;
-    align-items: center;
+    text-align: center;
 }
 
 button{
-    background-color: palevioletred;
+    background-color: tomato;
     border-radius: 10px;
     font-size: 3rem;
     width: 40%;
-}
-
-button:focus{
+    margin: 1rem;
+    color: white;
     outline: none;
 }
 
+
 img{
+    display: block;
     width: 200px;
     height: 200px;
-}
-
-button img{
-    width: 50px;
-    height: 50px;
+    margin: 10px auto;
 }
