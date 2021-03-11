@@ -15,5 +15,9 @@
   1) Scroll to the rabit image when the button is clicked
   2) Used scrollIntoView options(behavior and block) for customed settings
 
+## Chapter 3
+- Coordinates [URL](https://yjclarelee.github.io/browser101/chapter02/coordinates_ellie/index.html)
+  1) **Optimized efficiency: 'style.top' 'style.left' were changed to 'transform'** This leads to less layout making.
+
 ## Webpage
 [Browser 101](https://academy.dream-coding.com/courses/browser101)
