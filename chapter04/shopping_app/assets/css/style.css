@@ -1,0 +1,71 @@
+:root{
+    --padding-px: 10px;
+}
+
+*{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background-color: rgb(238, 238, 180);
+}
+
+main{
+    width: 40%;
+    height: 80%;
+    border-radius: var(--padding-px);
+    background-color:rgb(238, 202, 238);
+}
+
+h1{
+    padding: var(--padding-px) 0;
+    background-color:rgb(238, 202, 238);
+    border-top-left-radius: var(--padding-px);
+    border-top-right-radius: var(--padding-px);
+}
+
+ul{
+    height: 73%;
+    padding: var(--padding-px) calc(3*var(--padding-px));
+    background-color:rgb(248, 241, 241)
+}
+
+li{
+    display: flex;
+    justify-content:space-between;
+    list-style: none;
+    font-size: 1.6rem;
+}
+
+input{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 50px;
+    border: none;
+}
+
+li img{
+    width: 35px;
+}
+
+button{
+    border: none;
+    background-color: transparent;
+}
+
+button img{
+    width: 40px;
+}
+
+.add{
+    margin-top: 3px;
+}
