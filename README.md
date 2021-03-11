@@ -11,6 +11,9 @@
 - Coordinates [URL](https://yjclarelee.github.io/browser101/chapter02/coordinates_ellie/index.html)
   1) Show mouse coordinate in the window
   2) In the first version, the positions were set in JS. In the second version, the subtle positions were set in CSS which made things clearer and easy to understand. It is a better practice of programming.
+- Scroll to Object [URL](https://yjclarelee.github.io/browser101/chapter02/rabbits/index.html)
+  1) Scroll to the rabit image when the button is clicked
+  2) Used scrollIntoView options(behavior and block) for customed settings
 
 ## Webpage
 [Browser 101](https://academy.dream-coding.com/courses/browser101)
