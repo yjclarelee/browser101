@@ -3,11 +3,6 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-body{
-    /* display: flex;
-    justify-content: space-between; */
-}
-
 .rect{
     width: 150px;
     height: 150px;
@@ -21,6 +16,6 @@ body{
 
 .buttons{
     position: fixed;
-    left: 550px;
-    top: 0px;
+    right: 10px;
+    top: 5px;
 }
