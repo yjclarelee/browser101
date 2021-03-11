@@ -7,5 +7,10 @@
   1) Show page and client coordinates when a rectangle is clicked</br>
   2) Scroll by 100px, to 100px, to special rectangle when the respective buttons are clicked
 
+## Chapter 2
+- Coordinates [URL](https://yjclarelee.github.io/browser101/chapter02/coordinates_ellie/index.html)
+  1) Show mouse coordinate in the window
+  2) In the first version, the positions were set in JS. In the second version, the subtle positions were set in CSS which made things clearer and easy to understand. It is a better practice of programming.
+
 ## Webpage
 [Browser 101](https://academy.dream-coding.com/courses/browser101)
