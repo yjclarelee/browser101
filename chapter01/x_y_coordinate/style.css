@@ -1,0 +1,15 @@
+*{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.rect{
+    width: 150px;
+    height: 150px;
+    background-color: cornflowerblue;
+    border: 1px solid black;
+}
+
+.rect:nth-child(8){
+    background-color: cornsilk;
+}
