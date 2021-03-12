@@ -1,10 +1,17 @@
 const LIST_KEY = 'shopping_list_array';
 const RANDOM_NUMBER = 'random_number_seed';
 
+// localStorage.clear();
 
 function render(){
+    initialRender();
     onAddEvent();
     removeItem();
+}
+
+function initialRender(){
+    const listArr = getLocalStorage(LIST_KEY);
+    listArr.forEach((elem) => setHTML(elem));
 }
 
 // add events enter and add button click
@@ -67,7 +74,8 @@ function getLocalStorage(key){
 function setLocalStorage(key, data, type){
     const listArr = getLocalStorage(key);
     if(type == 'add') listArr.push(data);
-    else listArr.splice(listArr.indexOf(data), 0)
+    else listArr.splice(listArr.indexOf(data), 0);
+    localStorage.setItem(LIST_KEY, listArr);
 }
 
 function setRandomNumber(key, num){
