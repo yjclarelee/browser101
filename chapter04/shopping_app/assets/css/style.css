@@ -39,7 +39,8 @@ h1{
 ul{
     height: 73%;
     padding: var(--padding-px) calc(3*var(--padding-px));
-    background-color:rgb(248, 241, 241)
+    background-color:rgb(248, 241, 241);
+    overflow: scroll;
 }
 
 li{
