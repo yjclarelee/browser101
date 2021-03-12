@@ -33,7 +33,8 @@ function onAddEvent(){
 function setItem(text){
     const input = document.querySelector('input[type="text"]');
     setLocalStorage(LIST_KEY, text, 'add');
-    setHTML(text);
+    const li = setHTML(text);
+    li.scrollIntoView({behavior: "smooth"});
     input.value = ''
 }
 
@@ -52,7 +53,8 @@ function setHTML(elem){
         `;
         li.innerHTML = liHTML;
         ul.appendChild(li);
-    } 
+        return li;
+    }
 }
 
 function removeItem(){
@@ -62,6 +64,7 @@ function removeItem(){
         if(event.target.nodeName.toLowerCase() == 'img'){
             const id = `#li-${event.path[0].id.split('-')[1]}`
             const li = document.querySelector(id);
+            setLocalStorage(LIST_KEY, event.path[2].innerText.trim(), 'delete')
             ul.removeChild(li);
         }
     })
@@ -75,7 +78,7 @@ function getLocalStorage(key){
 function setLocalStorage(key, data, type){
     const listArr = getLocalStorage(key);
     if(type == 'add') listArr.push(data);
-    else listArr.splice(listArr.indexOf(data), 0);
+    else listArr.splice(listArr.indexOf(data), 1);
     localStorage.setItem(LIST_KEY, JSON.stringify(listArr));
 }
 
