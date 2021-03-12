@@ -19,5 +19,13 @@
 - Coordinates [URL](https://yjclarelee.github.io/browser101/chapter02/coordinates_ellie/index.html)
   1) **Optimized efficiency: 'style.top' 'style.left' were changed to 'transform'** This leads to less layout making.
 
+## Chapter 4
+- Shopping list [URL](https://yjclarelee.github.io/browser101/chapter04/shopping_list/index.html)
+ 1) Add list item by enter or pushing plus sign
+ 2) Remove list item by pushing delete button
+ 3) Learned usage of fontawesome
+ 4) Learned how to use gradient colors
+ 5) Learned how to give shadows
+ 
 ## Webpage
 [Browser 101](https://academy.dream-coding.com/courses/browser101)
