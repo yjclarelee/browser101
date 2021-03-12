@@ -11,6 +11,7 @@ function render(){
 
 function initialRender(){
     const listArr = getLocalStorage(LIST_KEY);
+    console.log(listArr);
     listArr.forEach((elem) => setHTML(elem));
 }
 
@@ -68,14 +69,14 @@ function removeItem(){
 
 function getLocalStorage(key){
     const item = localStorage.getItem(key);
-    return item ? item : [];
+    return item ? JSON.parse(item): [];
 }
 
 function setLocalStorage(key, data, type){
     const listArr = getLocalStorage(key);
     if(type == 'add') listArr.push(data);
     else listArr.splice(listArr.indexOf(data), 0);
-    localStorage.setItem(LIST_KEY, listArr);
+    localStorage.setItem(LIST_KEY, JSON.stringify(listArr));
 }
 
 function setRandomNumber(key, num){
