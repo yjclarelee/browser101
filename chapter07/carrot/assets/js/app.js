@@ -10,9 +10,20 @@ const Y_AVAILABLE_LENGTH = 130;
 function startGame(){
     const playButton = document.querySelector('.play');
     playButton.addEventListener('click', (event) => {
+        toggleStartIcon();
         setTimer(playButton);
         setItems();
     })
+}
+
+function toggleStartIcon(){
+    const icon = document.querySelector('.toggle');
+    if(icon.className.includes('play')) {
+        icon.className = icon.className.split('play').join('square');
+    }
+    else{
+        icon.className = icon.className.split('square').join('play');
+    }
 }
 
 function setTimer(){
