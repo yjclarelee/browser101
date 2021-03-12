@@ -23,6 +23,9 @@ main{
     height: 80%;
     border-radius: var(--padding-px);
     background-color:rgb(238, 202, 238);
+    -webkit-box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.46);
+    -moz-box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.46);
+    box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.46);
 }
 
 h1{
