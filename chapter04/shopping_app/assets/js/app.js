@@ -22,16 +22,19 @@ function onAddEvent(){
 }
 
 function setHTML(elem){
-    const ul = document.querySelector('ul');
-    const li = document.createElement('li');
-    const liHTML = `
-    ${elem}
-    <button class="delete" type="button">
-        <img src="./assets/img/trash.png" alt="">
-    </button>
-    `;
-    li.innerHTML = liHTML;
-    ul.appendChild(li);
+    // HTML is set only if there is info
+    if(elem){
+        const ul = document.querySelector('ul');
+        const li = document.createElement('li');
+        const liHTML = `
+        ${elem}
+        <button class="delete" type="button">
+            <img src="./assets/img/trash.png" alt="">
+        </button>
+        `;
+        li.innerHTML = liHTML;
+        ul.appendChild(li);
+    } 
 }
 
 function getLocalStorage(key){
