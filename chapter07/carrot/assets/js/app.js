@@ -23,8 +23,9 @@ function playGame(){
     let gameStarted = false;
     playButton.addEventListener('click', (event) => {
         if(gameStarted){
-            if(IS_PAUSED) IS_PAUSED = false;
-            else IS_PAUSED = true;  
+            // if(IS_PAUSED) IS_PAUSED = false;
+            // else IS_PAUSED = true;  
+            IS_PAUSED = !IS_PAUSED;
         }
         else{
             initializeGame(gameStarted);
