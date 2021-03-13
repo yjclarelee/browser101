@@ -26,11 +26,14 @@ function playGame(){
             // if(IS_PAUSED) IS_PAUSED = false;
             // else IS_PAUSED = true;  
             IS_PAUSED = !IS_PAUSED;
+            const popup = document.querySelector('.pop-up');
+            popup.style.display = 'none';
         }
         else{
             initializeGame(gameStarted);
             if(!gameStarted) setTimer(playButton);
             gameStarted = true;
+            const popup = document.querySelector('.pop-up');
         }
         toggleStartIcon();  
     })
@@ -54,13 +57,15 @@ function setItem(item){
 function removeItems(){
     const carrotList = document.querySelector('.carrots');
     const bugList = document.querySelector('.bugs');
-    removeList(carrotList);
-    removeList(bugList);
+    // removeList(carrotList);
+    // removeList(bugList);
+    carrotList.innerHTML = '';
+    bugList.innerHTML = '';
 }
 
-function removeList(elem){
-    while(elem.firstChild) elem.remove(elem.lastChild);
-}
+// function removeList(elem){
+//     while(elem.firstChild) elem.remove(elem.lastChild);
+// }
 
 function makeHTML(x, y, id, type){
     const li = document.createElement('li');
@@ -151,6 +156,7 @@ function onRedoClick(){
 
 function startGame(){
     IS_PAUSED = false;
+    removeItems();
     initializeGame(gameStarted);
     setTimer();
 }
