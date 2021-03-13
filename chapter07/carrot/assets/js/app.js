@@ -8,6 +8,12 @@ let IS_PAUSED = false;
 let interval; 
 let gameStarted;
 
+const bgSound = new Audio('/chapter07/carrot/assets/sound/bg.mp3');
+const alertSound = new Audio('/chapter07/carrot/assets/sound/alert.wav');
+const gameWinSound = new Audio('/chapter07/carrot/assets/sound/game_win.mp3');
+const carrotSound = new Audio('/chapter07/carrot/assets/sound/carrot_pull.mp3');
+const bugSound = new Audio('/chapter07/carrot/assets/sound/bug_pull.mp3');
+
 (function render(){
     playGame();
     onItemClick();
@@ -21,6 +27,7 @@ let gameStarted;
 function playGame(){
     const playButton = document.querySelector('.play');
     let gameStarted = false;
+    // playSound(bgSound);
     playButton.addEventListener('click', (event) => {
         if(gameStarted){
             // if(IS_PAUSED) IS_PAUSED = false;
@@ -28,12 +35,12 @@ function playGame(){
             IS_PAUSED = !IS_PAUSED;
             const popup = document.querySelector('.pop-up');
             popup.style.display = 'none';
+            playSound(alertSound)
         }
         else{
             initializeGame(gameStarted);
             if(!gameStarted) setTimer(playButton);
             gameStarted = true;
-            const popup = document.querySelector('.pop-up');
         }
         toggleStartIcon();  
     })
@@ -57,15 +64,10 @@ function setItem(item){
 function removeItems(){
     const carrotList = document.querySelector('.carrots');
     const bugList = document.querySelector('.bugs');
-    // removeList(carrotList);
-    // removeList(bugList);
+    // do this instead of remove()
     carrotList.innerHTML = '';
     bugList.innerHTML = '';
 }
-
-// function removeList(elem){
-//     while(elem.firstChild) elem.remove(elem.lastChild);
-// }
 
 function makeHTML(x, y, id, type){
     const li = document.createElement('li');
@@ -83,6 +85,7 @@ function toggleStartIcon(){
     else{
         icon.className = icon.className.split('square').join('play');
         const popup = document.querySelector('.pop-up');
+        // instead of using 'block', use a class and remove the class
         popup.style.display = 'block';
     }
 }
@@ -118,12 +121,18 @@ function onItemClick(){
             const id = event.target.getAttribute('data-id');
             const li = document.querySelector(`#${id}`);
             elem.removeChild(li);
+            // if event.target matches '.carrot'
             if(id.split('-')[0] == 'carrot'){
+                playSound(carrotSound);
                 const remainder = document.querySelector('.remainder');
                 remainder.innerHTML = +remainder.innerHTML - 1;
-                if(!+remainder.innerHTML) popUp('win');
+                if(!+remainder.innerHTML) {
+                    playSound(gameWinSound);
+                    popUp('win');    
+                }
             }
             else{
+                playSound(bugSound);
                 popUp('lose');
             }
         })
@@ -141,6 +150,7 @@ function popUp(text){
     text == 'win' ? textSpan.innerHTML = 'YOU WIN' : textSpan.innerHTML = 'YOU LOSE'
     popup.style.display = 'block';
     IS_PAUSED = true;
+    stopSound(bgSound);
 }
 
 function onRedoClick(){
@@ -159,4 +169,14 @@ function startGame(){
     removeItems();
     initializeGame(gameStarted);
     setTimer();
+    playSound(bgSound);
+}
+
+function playSound(sound){
+    sound.currentTime = 0;
+    sound.play();
+}
+
+function stopSound(sound){
+    sound.pause();
 }
