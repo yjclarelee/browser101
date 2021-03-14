@@ -1,5 +1,6 @@
 import PopUp from './popup.js';
 import Field from './field.js';
+import * as sound from './sound.js';
 
 const GAME_TIME = 10;
 const X_AVAILABLE_LENGTH = 700;
@@ -8,12 +9,6 @@ const NUM_CARROTS = 5;
 
 let isPaused = false;
 let intervalVar; 
-
-const bgSound = new Audio('/chapter07/carrot/assets/sound/bg.mp3');
-const alertSound = new Audio('/chapter07/carrot/assets/sound/alert.wav');
-const gameWinSound = new Audio('/chapter07/carrot/assets/sound/game_win.mp3');
-const carrotSound = new Audio('/chapter07/carrot/assets/sound/carrot_pull.mp3');
-const bugSound = new Audio('/chapter07/carrot/assets/sound/bug_pull.mp3');
 
 const fieldArea = new Field(NUM_CARROTS, X_AVAILABLE_LENGTH, Y_AVAILABLE_LENGTH);
 const redoPopUp = new PopUp();
@@ -34,7 +29,7 @@ function playGame(){
     fieldArea.clearItems();
     fieldArea.setItems();
     setTimer();
-    playSound(bgSound);
+    sound.playBackground();
 }
 
 function setAssets(){
@@ -55,8 +50,6 @@ function toggleButton(){
     else toggle.className = toggle.className.split('play').join('square');
 }
 
-
-
 function setTimer(){
     let time = GAME_TIME;
     timer.innerHTML = `00:${padZero(GAME_TIME)}`
@@ -68,7 +61,7 @@ function setTimer(){
             playBtn.style.visibility = 'hidden';
             clearInterval(intervalVar); 
             redoPopUp.popUp('lose');
-            stopSound(bgSound);
+            sound.stopBackground();
         }
     }, 1000);
 }
@@ -82,7 +75,7 @@ fieldArea.carrotEventListener((event) => {
     const id = event.target.dataset.id;
     const li = document.querySelector(`#${id}`);
     fieldArea.carrotList.removeChild(li);
-    playSound(carrotSound);
+    sound.playCarrot();
     remainder.innerHTML = +remainder.innerHTML - 1;
     if(!+remainder.innerHTML) onWinGame();
 })
@@ -91,13 +84,15 @@ fieldArea.bugEventListener((event) =>{
     const id = event.target.dataset.id;
     const li = document.querySelector(`#${id}`);
     fieldArea.bugList.removeChild(li);
-    playSound(bugSound);
+    sound.playBug();
+    toggle.style.visibility = 'hidden';
+    playBtn.style.visibility = 'hidden';
     isPaused = true;
     redoPopUp.popUp('lose');
 })
 
 redoPopUp.setEventListener(() => {
-    playSound(alertSound);
+    sound.playAlert();
     redoPopUp.hide();
     clearInterval(intervalVar);
     isPaused = false;
@@ -108,21 +103,12 @@ redoPopUp.setEventListener(() => {
 function onWinGame(){
     toggle.style.visibility = 'hidden';
     playBtn.style.visibility = 'hidden';
-    playSound(gameWinSound);
+    sound.stopBackground();
+    sound.playWin();
     redoPopUp.popUp('win');
     isPaused = true;
-    stopSound(bgSound); 
 }
 
 function stopGame(){
-    isPaused = true
-}
-
-function playSound(sound){
-    sound.currentTime = 0;
-    sound.play();
-}
-
-function stopSound(sound){
-    sound.pause();
+    isPaused = true;
 }
