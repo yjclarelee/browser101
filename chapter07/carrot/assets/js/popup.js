@@ -13,7 +13,7 @@ export default class PopUp{
     }
 
     popUp(text){
-        text == 'win' ? this.textSpan.innerHTML = 'YOU WIN' : this.textSpan.innerHTML = 'YOU LOSE'
+        this.textSpan.innerHTML = text;
         this.popup.style.display = 'block';
     }
 
