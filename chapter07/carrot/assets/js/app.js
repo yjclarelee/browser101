@@ -1,4 +1,5 @@
-import PopUp from './popup.js'
+import PopUp from './popup.js';
+import Field from './field.js';
 
 const GAME_TIME = 10;
 const X_AVAILABLE_LENGTH = 700;
@@ -14,20 +15,8 @@ const gameWinSound = new Audio('/chapter07/carrot/assets/sound/game_win.mp3');
 const carrotSound = new Audio('/chapter07/carrot/assets/sound/carrot_pull.mp3');
 const bugSound = new Audio('/chapter07/carrot/assets/sound/bug_pull.mp3');
 
+const fieldArea = new Field(NUM_CARROTS, X_AVAILABLE_LENGTH, Y_AVAILABLE_LENGTH);
 const redoPopUp = new PopUp();
-redoPopUp.setEventListener((event) => {
-    playSound(alertSound);
-    redoPopUp.hide();
-    clearInterval(intervalVar);
-    isPaused = false;
-    playGame();
-})
-
-// (function render(){
-//     playGame();
-//     onItemClick();
-//     onRedoClick();
-// })();
 
 /**
  * playGame()
@@ -39,8 +28,21 @@ const toggle = document.querySelector('.toggle');
 const timer = document.querySelector('.time');
 const remainder = document.querySelector('.remainder');
 
-const carrotList = document.querySelector('.carrots');
-const bugList = document.querySelector('.bugs');
+
+function playGame(){
+    setAssets();
+    fieldArea.clearItems();
+    fieldArea.setItems();
+    setTimer();
+    playSound(bgSound);
+}
+
+function setAssets(){
+    playBtn.style.visibility = 'visible'
+    toggle.style.visibility = 'visible'
+    timer.style.visibility = 'visible'
+    remainder.style.visibility = 'visible'
+}
 
 toggle.addEventListener('click', (event) => {
     if(isPaused) stopGame();
@@ -53,48 +55,7 @@ function toggleButton(){
     else toggle.className = toggle.className.split('play').join('square');
 }
 
-function playGame(){
-    setAssets();
-    clearItems();
-    setItems();
-    setTimer();
-    playSound(bgSound);
-    onItemClick();
-}
 
-function setAssets(){
-    playBtn.style.visibility = 'visible'
-    toggle.style.visibility = 'visible'
-    timer.style.visibility = 'visible'
-    remainder.style.visibility = 'visible'
-}
-
-function clearItems(){
-    carrotList.innerHTML = '';
-    bugList.innerHTML = '';
-}
-
-function setItems(){
-    setItem(carrotList, 'carrot');
-    setItem(bugList, 'bug');
-}
-
-function setItem(list, kind){
-    for(let i = 0; i < NUM_CARROTS; i++){
-        let x = Math.random() * X_AVAILABLE_LENGTH;
-        let y = Math.random() * Y_AVAILABLE_LENGTH;
-        const li = makeHTML(x, y, i, kind);
-        list.appendChild(li);
-    }
-}
-
-function makeHTML(x, y, id, type){
-    const li = document.createElement('li');
-    li.setAttribute('id', `${type}-${id}`);
-    li.innerHTML = `<img src="./assets/img/${type}.png" data-id="${type}-${id}">`;
-    li.style.transform = `translate(${x}px, ${y}px)`
-    return li;   
-}
 
 function setTimer(){
     let time = GAME_TIME;
@@ -117,27 +78,32 @@ function padZero(num){
     else return '0' + num;
 }
 
-function onItemClick(){
-    carrotList.addEventListener('click', (event) => {
-        const id = event.target.dataset.id;
-        const li = document.querySelector(`#${id}`);
-        carrotList.removeChild(li);
-        playSound(carrotSound);
-        remainder.innerHTML = +remainder.innerHTML - 1;
-        if(!+remainder.innerHTML) {
-            console.log('win');
-            onWinGame();
-        }
-    })
-    bugList.addEventListener('click', (event) => {
-        const id = event.target.dataset.id;
-        const li = document.querySelector(`#${id}`);
-        bugList.removeChild(li);
-        playSound(bugSound);
-        isPaused = true;
-        redoPopUp.popUp('lose');
-    })
-}
+fieldArea.carrotEventListener((event) => {
+    const id = event.target.dataset.id;
+    const li = document.querySelector(`#${id}`);
+    fieldArea.carrotList.removeChild(li);
+    playSound(carrotSound);
+    remainder.innerHTML = +remainder.innerHTML - 1;
+    if(!+remainder.innerHTML) onWinGame();
+})
+
+fieldArea.bugEventListener((event) =>{
+    const id = event.target.dataset.id;
+    const li = document.querySelector(`#${id}`);
+    fieldArea.bugList.removeChild(li);
+    playSound(bugSound);
+    isPaused = true;
+    redoPopUp.popUp('lose');
+})
+
+redoPopUp.setEventListener(() => {
+    playSound(alertSound);
+    redoPopUp.hide();
+    clearInterval(intervalVar);
+    isPaused = false;
+    remainder.innerHTML = NUM_CARROTS;
+    playGame();
+})
 
 function onWinGame(){
     toggle.style.visibility = 'hidden';
