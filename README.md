@@ -27,5 +27,12 @@
  4) Learned how to use gradient colors
  5) Learned how to give shadows
  
+## Chapter 7
+- Carrot Game [URL](https://yjclarelee.github.io/browser101/chapter07/carrot/index.html)
+ 1) A game where you pick all carrots and avoid bugs in time
+ 2) Set timer to decrease every second and pause when needed
+ 3) Randomly set carrot and bug items
+ 4) Refactored into modules
+
 ## Webpage
 [Browser 101](https://academy.dream-coding.com/courses/browser101)
