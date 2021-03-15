@@ -1,6 +1,5 @@
-import PopUp from './popup.js';
-import * as sound from './sound.js';
 import Game from './game.js';
+import PopUp from './popup.js';
 
 const GAME_TIME = 10;
 const X_AVAILABLE_LENGTH = 700;
