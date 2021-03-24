@@ -20,7 +20,7 @@
   1) **Optimized efficiency: 'style.top' 'style.left' were changed to 'transform'** This leads to less layout making.
 
 ## Chapter 4
-- Shopping list [URL](https://yjclarelee.github.io/browser101/chapter04/shopping_list/index.html)
+- Shopping list [URL](https://yjclarelee.github.io/browser101/chapter04/shopping_app/index.html)
  1) Add list item by enter or pushing plus sign
  2) Remove list item by pushing delete button
  3) Learned usage of fontawesome
